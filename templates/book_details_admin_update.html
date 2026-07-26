@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_book_details_admin_update.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Readgister. </title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+
+            <div class="dropdown">
+                <button class="dropdown_button"> Accounts </button>
+                <div class="dropdown_content">
+                    <div class="profile_section">
+                        <div class="profile_section_body">
+                            <div class="staff_profile_photo">
+                                {% if admin['profile_admin'] %}
+                                <img class="staff_profile_photo" src="{{ url_for('static', filename=admin['profile_admin']) }}" width="150">
+                                {% else %}
+                                <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                                {% endif %}
+                            </div>
+                            <h1 class="profile_name">{{ admin['name_admin'] }}</h1>
+                            <p class="profile_email">{{ admin['email_admin'] }}</p>
+                        </div>
+                    </div>
+                    <a class="profile_button" href="{{url_for('admin_profile')}}"> Profile </a>
+
+                    <p class="dropdown_divider">  </p>
+
+                        <p class="dashboard_title"> Admin Dashboard </p>
+                        <div class="dashboard_button">
+                            <a href="{{url_for('admin_dashboard_books')}}"> Book List </a>
+                        </div>
+                        <div class="dashboard_button">
+                            <a href="{{url_for('admin_dashboard_staff')}}"> Staff List </a>
+                        </div>
+                    <div class="logout_button">
+                        <a href="{{url_for('admin_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="book_details">
+        <div class="book_details_body">
+            <div class="book_details_elements">
+
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="element_left">
+                        <label class="book_cover_wrapper">
+                            <img src="{{ url_for('static', filename=book['photo_book']) }}" class="book_cover_large">
+                            <div class="hover_text">Change cover</div>
+                            <input type="file" name="cover_book" accept="image/*">
+                        </label>
+                    </div>
+                    
+
+                    <div class="element_right">
+                        <input type="text" name="title_book" value="{{ book['title_book'] }}" required class="book_title">
+                    
+                        <div class="author_year">
+                            <p>By:</p>
+                            <input type="text" name="author_book" value="{{ book['author_book'] }}" required class="author_year0">
+                    
+                            <p>Year:</p>
+                            <input type="text" name="year_book" value="{{ book['year_book'] }}" required class="author_year0">
+                    
+                            <p>Course:</p>
+                            <select class="course_drop" name="course_book" id="course_book" required>
+                                <option value="BSIT" {% if book['course_book'] == 'BSIT' %} selected {% endif %}>BSIT</option>
+                                <option value="BSN" {% if book['course_book'] == 'BSN' %} selected {% endif %}>BSN</option>
+                                <option value="BSBA" {% if book['course_book'] == 'BSBA' %} selected {% endif %}>BSBA</option>
+                                <option value="BSCRIM" {% if book['course_book'] == 'BSCRIM' %} selected {% endif %}>BSCRIM</option>
+                                <option value="BSHM" {% if book['course_book'] == 'BSHM' %} selected {% endif %}>BSHM</option>
+                                <option value="BSAIS" {% if book['course_book'] == 'BSAIS' %} selected {% endif %}>BSAIS</option>
+                                <option value="BSCE" {% if book['course_book'] == 'BSCE' %} selected {% endif %}>BSCE</option>
+                                <option value="BSED" {% if book['course_book'] == 'BSED' %} selected {% endif %}>BSED</option>
+                            </select>
+                        </div>               
+                        
+                        <div class="book_description">
+                            <div class="book_desc">
+                                <p class="desc_title"> Description: </p>
+                                <textarea class="desc_input" name="desc_book" rows="4" cols="70" required>{{ book['desc_book'] }}</textarea>
+                            </div>
+                            <div class="book_quantity">
+                                <p class="status_box">{{ book['status_book'] }}</p>
+                            
+                                <div class="quantity_box">
+                                    <label>Quantity:</label>
+                                    <input type="text" name="quantity_book" value="{{ book['quantity_book'] }}" required>
+                                </div>
+                            
+                                <button type="submit" class="save_btn"> Save Changes </button>
+                </form> 
+                                <form method="POST" action="{{ url_for('book_details_admin_delete') }}" onsubmit="return confirm('Are you sure you want to delete this book?');">
+                                    <input type="hidden" name="book_id" value="{{ book['id_book'] }}">
+                                    <button type="submit" class="delete_btn"> <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M276-88q-45 0-75.5-30.5T170-194v-530h-40v-106h228v-48h246v48h228v106h-40v530q0 43.73-31.14 74.86Q729.72-88 686-88H276Zm410-636H276v530h410v-530ZM339-275h106v-368H339v368Zm178 0h106v-368H517v368ZM276-724v530-530Z"/></svg> </button>
+                                </form>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('admin_home_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist_admin')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

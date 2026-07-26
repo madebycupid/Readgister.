@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_landing_page.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Readgister. </title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+
+            <div class="dropdown">
+                <button class="dropdown_button"> Accounts </button>
+                <div class="dropdown_content">
+                    <div class="profile_section">
+                        <div class="profile_section_body">
+                            <div class="staff_profile_photo">
+                                {% if admin['profile_admin'] %}
+                                <img class="staff_profile_photo" src="{{ url_for('static', filename=admin['profile_admin']) }}" width="150">
+                                {% else %}
+                                <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                                {% endif %}
+                            </div>
+                            <h1 class="profile_name">{{ admin['name_admin'] }}</h1>
+                            <p class="profile_email">{{ admin['email_admin'] }}</p>
+                        </div>
+                    </div>
+                    <a class="profile_button" href="{{url_for('admin_profile')}}"> Profile </a>
+
+                    <p class="dropdown_divider">  </p>
+
+                        <p class="dashboard_title"> Admin Dashboard </p>
+                        <div class="dashboard_button">
+                            <a href="{{url_for('admin_dashboard_books')}}"> Book List </a>
+                        </div>
+                        <div class="dashboard_button">
+                            <a href="{{url_for('admin_dashboard_staff')}}"> Staff List </a>
+                        </div>
+                    <div class="logout_button">
+                        <a href="{{url_for('admin_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="header_banner">
+        <div class="banner_body">
+            <div class="logo_header">
+                <img src= " {{ url_for ('static', filename='photos/logo/logo-color.png') }}" alt="Readgister." class="logo1">
+            </div>
+
+            <div class="banner_text_body">
+                <h1 class="banner_text_header"> Your Library, Made Simple. </h1>
+                <p class="banner_text_sub"> Welcome to Readgister — your campus companion for smarter book searching. Discover, borrow, and track books in real time with just a few clicks. Simplicity meets efficiency for every student and reader. </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about_section">
+        <div class="about_section_body">
+            <div class="about_section_left">
+                <h1> FAQ. </h1>
+                <p> Learn more about Readgister by exploring some of the most frequently asked questions below. </p>
+                <div class="mini_faq_button">
+                    <a href="#"> ✦ FAQ </a>
+                </div>
+            </div>
+
+            <div class="about_section_right">
+                <h1> About Readgister. </h1>
+                <p> Readgister makes book tracking simple and smart! It helps students and librarians keep track of <br> borrowed books quickly and efficiently. </p>
+                <div class="mini_about_button">
+                    <a href="#"> ✦ About </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about_section_bottom">
+            <div class="about_section_bottom_left">
+                <h1> Look at our Library! </h1>
+                <p> Explore our growing collection of books and see what’s available. Simply click the blue button below to begin your search. </p>
+                <div class="booklist_button">
+                    <a href="{{url_for('booklist_admin')}}"> ✦ Search Books Here! </a>
+                </div>
+            </div>
+            <div class="about_section_bottom_right">
+                <img src="{{url_for('static', filename='photos/logo/logo_icon0_blue.png')}}" class="booklist_logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('admin_home_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist_admin')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

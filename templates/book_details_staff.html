@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_book_details.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Readgister. </title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+
+            <div class="dropdown">
+                <button class="dropdown_button"> Accounts </button>
+                <div class="dropdown_content">
+                    <div class="profile_section">
+                        <div class="profile_section_body">
+                            <div class="staff_profile_photo">
+                                {% if staff['profile_staff'] %}
+                                <img class="staff_profile_photo" src="{{ url_for('static', filename=staff['profile_staff']) }}" width="150">
+                                {% else %}
+                                <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                                {% endif %}
+                            </div>
+                            <h1 class="profile_name">{{ staff['name_staff'] }}</h1>
+                            <p class="profile_email">{{ staff['email_staff'] }}</p>
+                        </div>
+                    </div>
+                    <a class="profile_button" href="{{url_for('staff_profile')}}"> Profile </a>
+
+                    <p class="dropdown_divider"> </p>
+
+                    <div class="dashboard_button">
+                        <a href="{{url_for('staff_dashboard')}}"> Staff Dashboard </a>
+                    </div>
+                    <div class="logout_button">
+                        <a href="{{url_for('staff_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="book_details">
+        <div class="book_details_body">
+            <div class="book_details_elements">
+                <div class="element_left">
+                    <img src="{{ url_for('static', filename=book['photo_book']) }}" class="book_cover_large">
+                </div>
+
+                <div class="element_right">
+                    <h1>{{ book['title_book'] }}</h1>
+                    <div class="author_year">
+                        <p><strong>By:</strong> {{ book['author_book'] }}</p>
+                        <p><strong>Year:</strong> {{ book['year_book'] }}</p>
+                        <p><strong>Course:</strong> {{ book['course_book'] }}</p>
+                    </div>
+                    <div class="book_description">
+                        <div class="book_desc">
+                            <p class="desc_title"> Description: </p>
+                            <p class="description"> {{ book['desc_book'] }} </p>
+                        </div>
+                        <div class="book_quantity">
+                            <p class="quantity">{{ book['status_book'] }}</p>
+                            <p class="quantity"> Quantity: {{ book['quantity_book'] }}</p>
+                        </div>
+                        <form action="{{ url_for('staff_dashboard') }}" method="get">
+                            <input type="hidden" name="book_borrow" value="{{ book['title_book'] }}">
+                            <button class="mod_button0" type="submit" class="borrow_button"> Borrow </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('staff_home_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist_staff')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

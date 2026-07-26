@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_staff_dashboard.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readgister - Staff Dashboard</title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('staff_home_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+
+            <div class="dropdown">
+                <button class="dropdown_button"> Accounts </button>
+                <div class="dropdown_content">
+                    <div class="profile_section">
+                        <div class="profile_section_body">
+                            <div class="staff_profile_photo">
+                                {% if staff['profile_staff'] %}
+                                <img class="staff_profile_photo" src="{{ url_for('static', filename=staff['profile_staff']) }}" width="150">
+                                {% else %}
+                                <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                                {% endif %}
+                            </div>
+                            <h1 class="profile_name">{{ staff['name_staff'] }}</h1>
+                            <p class="profile_email">{{ staff['email_staff'] }}</p>
+                        </div>
+                    </div>
+                    <a class="profile_button" href="{{url_for('staff_profile')}}"> Profile </a>
+
+                    <p class="dropdown_divider"> </p>
+
+                    <div class="dashboard_button">
+                        <a href="{{url_for('staff_dashboard')}}"> Staff Dashboard </a>
+                    </div>
+                    <div class="logout_button">
+                        <a href="{{url_for('staff_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="staff_dashboard_body">
+        <div class="staff_dashboard_elements">
+            <div class="staff_dashboard_inp">
+                <div class="header0">
+                    <h1 class="header0_text"> Staff Dashboard </h1>
+                    <p> List of individuals who borrowed a book. </p>
+                </div>
+
+                <div class="table_input_body">
+                    <div class="table_input_elements">
+                        <form action="/staff_dashboard_input" method="post">
+                            <input type="text" id="namelast_student" name="namelast_student" placeholder="Last Name" required> 
+                            <input type="text" id="namefirst_student" name="namefirst_student" placeholder="First Name" required>
+                            <label for="course_student"></label>
+                                <select class="table_dropdown_title" id="course_student" name="course_student" required>
+                                    <option value=""> Select Course </option>
+                                    <option value="BSIT"> BSIT </option>
+                                    <option value="BSN"> BSN </option>
+                                    <option value="BSBA"> BSBA </option>
+                                    <option value="BSCRIM"> BSCRIM </option>
+                                    <option value="BSHM"> BSHM </option>
+                                    <option value="BSAIS"> BSAIS </option>
+                                    <option value="BSCE"> BSCE </option>
+                                    <option value="BSED"> BSED </option>
+                                </select>
+                            <input type="text" id="email_student" name="email_student" placeholder="Email" required>
+                            <input type="text" id="phone_no" name="phone_no" placeholder="Contact Number" required>  
+                            <input type="date" id="date_borrow" name="date_borrow" value="{{ today }}" required>
+                            <input type="date" id="return_borrow" name="return_borrow" required>
+                            <input type="text" id="book_borrow" name="book_borrow" placeholder="Borrowed Book" value="{{ book_borrow }}" required>
+                            <input class="table_input_button" type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booklist_button">
+                <a href="{{url_for('booklist_staff')}}"> ✦ Go to Library </a>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash_messages">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+
+            <div class="table_data_body">
+                <div class="table_data">
+                    <table>
+                        <tr>
+                            <th class="id_column"> ID </th>
+                            <th> Last Name </th>
+                            <th> First Name </th>
+                            <th> Course </th>
+                            <th> Email Address </th>
+                            <th> Phone no. </th>
+                            <th> Date Borrowed </th>
+                            <th> Return Date </th>
+                            <th> Book Borrowed </th>
+                            <th class="settings_column"> Settings </th>
+                        </tr>
+                        {% for i in std %}
+                        <tr>
+                            <td class="id_column"> {{i['id_student']}}</td>
+                            <td>{{i['namelast_student']}}</td>
+                            <td>{{i['namefirst_student']}}</td>
+                            <td>{{i['course_student']}}</td>
+                            <td>{{i['email_student']}}</td>
+                            <td>{{i['phone_no']}}</td>
+                            <td>{{i['date_borrow']}}</td>
+                            <td>{{i['return_borrow']}}</td>
+                            <td class="hover_container">
+                                {{i['book_borrow']}}
+                                <div class="hover_card">
+                                    <div class="book_card">
+                                        {% if i['photo_book'] %}
+                                        <img src="{{ url_for('static', filename=i['photo_book']) }}" class="book_cover">
+                                        {% else %}
+                                        <img src="{{ url_for('static', filename='profile_p/cover_default.jpg') }}" class="book_cover">
+                                        {% endif %}
+                            
+                                        <div class="book_card_info">
+                                            <h4>{{ i['book_borrow'] }}</h4>
+                                            <div class="book_card_info0">
+                                                <div class="left">
+                                                    <p>{{ i['author_book'] }}</p>
+                                                    <p>Course: {{ i['course_book'] }}</p>
+                                                </div>
+                                                <div class="right">
+                                                    <p>{{ i['year_book'] }}</p>
+                                                    <p>Quantity: {{ i['quantity_book'] }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <form class="setting_buttons" action="/staff_dashboard_mod" method="post">
+                                    <input type="text" name="student_id" value="{{i['id_student']}}" hidden>
+                                    <button name="action_button" value="update_button"> ✏ </button>
+                                    <button type="submit" name="action_button" value="delete_button" 
+                                    onclick="return confirm('Are you sure you want to delete this record?');">
+                                    ✖
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('staff_home_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist_staff')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

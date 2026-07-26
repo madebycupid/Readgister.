@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_staff_signup.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readgister. - Sign Up</title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+            <div class="dropdown">
+                <button class="dropdown_button"> Menu </button>
+                <div class="dropdown_content">
+                    
+                    <a href="{{url_for('staff_login')}}"> Staff Login</a>
+                    <a href="{{url_for('admin_login')}}"> Admin Login </a>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+
+    <div class="page_body">
+        <div class="login_body">
+            <div class="logo_header_main">
+                <div class="logo_header">
+                    <div class="logo_header_text">
+                        <h1 class="body_header_text"> Currently making a staff account. </h1>
+                        <p class="sub_text"> When making an account, you have to wait for the <i>admins</i> approval before you continue. </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login_elements">
+                <div class="login_text_header">
+                    <h1> Staff Sign-in</h1>
+                    <p> Only <i>staff</i> members can login/signup.</p>
+                </div>
+
+                <div class="login_input">
+                    <form action="/staff_account" method="post">
+                        <input type="text" id="name_staff" name="name_staff" placeholder="Name">
+                        <input type="text" id="email_staff" name="email_staff" placeholder="Email Address">
+                        <input type="password" id="pass_staff" name="pass_staff" placeholder="Password">
+                        <input class="login_input_button" type="submit" value="Sign up">
+                    </form>
+                </div>
+
+                <div class="admin_redirect">
+                    <p> Already have an account? <a href="{{url_for('staff_login')}}"> Log in here! </a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_booklist.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Readgister. </title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+            <div class="dropdown">
+                <button class="dropdown_button"> Menu </button>
+                <div class="dropdown_content">
+                    
+                    <a href="{{url_for('staff_login')}}"> Staff Login</a>
+                    <a href="{{url_for('admin_login')}}"> Admin Login </a>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="booklist_section">
+        <div class="booklist_section_body">
+            <div class="booklist_input_elements">
+                <div class="booklist_header">
+                    <h1> List of Books </h1>
+                    <p> The list of books that have been recorded thus far. </p>
+                </div>
+
+                <div class="booklist_input">
+                    <form method="get" action="{{ url_for('booklist') }}">
+
+                        <select name="course" class="booklist_course">
+                            <option value="" {% if course == "All" %}selected{% endif %}>All Courses</option>
+                            <option value="BSIT" {% if course == "BSIT" %}selected{% endif %}>BSIT</option>
+                            <option value="BSN" {% if course == "BSN" %}selected{% endif %}>BSN</option>
+                            <option value="BSBA" {% if course == "BSBA" %}selected{% endif %}>BSBA</option>
+                            <option value="BSCRIM" {% if course == "BSCRIM" %}selected{% endif %}>BSCRIM</option>
+                            <option value="BSHM" {% if course == "BSHM" %}selected{% endif %}>BSHM</option>
+                            <option value="BSAIS" {% if course == "BSAIS" %}selected{% endif %}>BSAIS</option>
+                            <option value="BSCE" {% if course == "BSCE" %}selected{% endif %}>BSCE</option>
+                            <option value="BSED" {% if course == "BSED" %}selected{% endif %}>BSED</option>
+                        </select>
+
+                        <input type="text" name="search" placeholder="Search Book or Author" value="{{ search }}" class="booklist_search">
+                
+                        <button type="submit" class="booklist_button"> Search </button>
+
+                    </form>
+                </div>
+            </div>
+            <img src="{{url_for('static', filename='photos/logo/logo_icon0_border.png')}}" class="booklist_logo"> 
+        </div>
+    </div>
+
+
+    <div class="booklist">
+        <div class="booklist_body">
+            <div class="booklist_elements">
+                {% for book in books %}
+                    <a href="{{ url_for('book_details',book_id=book['id_book']) }}" class="book_card_link">
+                        <div class="book_card">
+                            {% if book['photo_book'] %}
+                            <img src="{{ url_for('static', filename=book['photo_book']) }}" class="book_cover">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='profile_p/cover_default.jpg') }}" class="book_cover">
+                            {% endif %}
+
+                            <div class="book_card_info">
+                                <h4>{{ book['title_book'] }}</h4>
+
+                                <div class="book_card_info0">
+                                    <div class="left">
+                                        <p>{{ book['author_book'] }}</p>
+                                        <p>Course: {{ book['course_book'] }}</p>
+                                    </div>
+                                    <div class="right">
+                                        <p>{{ book['year_book'] }}</p>
+                                        <p>Quantity: {{ book['quantity_book'] }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+            {% else %}
+                <p class="books_none">No books found.</p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+</body>
+</html>

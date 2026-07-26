@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_staff_dashboard_update.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readgister - Staff Dashboard</title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+
+            <div class="dropdown">
+                <button class="dropdown_button"> Accounts </button>
+                <div class="dropdown_content">
+                    <div class="profile_section">
+                        <div class="profile_section_body">
+                            <div class="staff_profile_photo">
+                                {% if staff['profile_staff'] %}
+                                <img class="staff_profile_photo" src="{{ url_for('static', filename=staff['profile_staff']) }}" width="150">
+                                {% else %}
+                                <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                                {% endif %}
+                            </div>
+                            <h1 class="profile_name">{{ staff['name_staff'] }}</h1>
+                            <p class="profile_email">{{ staff['email_staff'] }}</p>
+                        </div>
+                    </div>
+                    <a class="profile_button" href="{{url_for('staff_profile')}}"> Profile </a>
+
+                    <p class="dropdown_divider"> </p>
+
+                    <div class="dashboard_button">
+                        <a href="{{url_for('staff_dashboard')}}"> Staff Dashboard </a>
+                    </div>
+                    <div class="logout_button">
+                        <a href="{{url_for('staff_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="staff_dashboard_body">
+        <div class="staff_dashboard_elements">
+            <div class="header0">
+                <h1 class="header0_text"> Staff Dashboard </h1>
+                <p> Updating <u>{{student_data['namelast_student']}}, {{student_data['namefirst_student']}}'s</u> information: </p>
+            </div>
+
+            <div class="staff_dashboard_inputs">
+                <form action="/staff_dashboard_mod_editing" method="post">
+                    <p> ID number: </p>
+                    <input type="text" id="id_student" name="id_student" value="{{student_data['id_student']}}" readonly> 
+                    <p> Last Name: </p>
+                    <input type="text" id="namelast_student" name="namelast_student" value="{{student_data['namelast_student']}}" placeholder="Last Name" required>
+                    <p> First Name: </p> 
+                    <input type="text" id="namefirst_student" name="namefirst_student" value="{{student_data['namefirst_student']}}" placeholder="First Name" required>
+                        <p> Course: </p>
+                        <label for="course_student"></label>
+                            <select class="table_dropdown_title" id="course_student" name="course_student" value="{{student_data['course_student']}}" required>
+                                <option value=""> Select Course </option>
+                                <option value="BSIT" {% if student_data['course_student'] == 'BSIT' %}selected{% endif %}>BSIT</option>
+                                <option value="BSN" {% if student_data['course_student'] == 'BSN' %}selected{% endif %}>BSN</option>
+                                <option value="BSBA" {% if student_data['course_student'] == 'BSBA' %}selected{% endif %}>BSBA</option>
+                                <option value="BSCRIM" {% if student_data['course_student'] == 'BSCRIM' %}selected{% endif %}>BSCRIM</option>
+                                <option value="BSHM" {% if student_data['course_student'] == 'BSHM' %}selected{% endif %}>BSHM</option>
+                                <option value="BSAIS" {% if student_data['course_student'] == 'BSAIS' %}selected{% endif %}>BSAIS</option>
+                                <option value="BSCE" {% if student_data['course_student'] == 'BSCE' %}selected{% endif %}>BSCE</option>
+                                <option value="BSED" {% if student_data['course_student'] == 'BSED' %}selected{% endif %}>BSED</option>
+                            </select>
+                        <p> Email Address: </p>
+                        <input type="text" id="email_student" name="email_student" placeholder="Email" value="{{student_data['email_student']}}" required>
+                        <p> Phone No: </p>
+                        <input type="text" id="phone_no" name="phone_no" placeholder="Contact Number" value="{{student_data['phone_no']}}" required>
+                        <p> Date Borrowed: </p>
+                        <input type="text" id="date_borrow" name="date_borrow" value="{{ student_data['date_borrow'] }}" required>
+                        <p> Return Date: </p>
+                        <input type="text" id="date_return" name="date_return" value="{{ student_data['return_borrow'] }}" required>
+                        <p> Borrowed Book: </p>
+                        <input type="text" id="book_borrow" name="book_borrow" placeholder="Borrowed Book" value="{{student_data['book_borrow']}}" readonly> 
+                    <input class="staff_dashboard_inputs_update" type="submit" value="Update">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('staff_home_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist_staff')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

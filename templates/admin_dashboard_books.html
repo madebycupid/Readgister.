@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_admin_dashboard_books.css')}}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Readgister. </title>
+</head>
+<body>
+    <div class="navbar">
+        <ul class="button" type="none">
+            <li> <img src="{{url_for('static', filename='photos/logo/logo_icon0_white.png')}}" class="small_logo"> </li>
+            <li> <a href="{{url_for('admin_home_page')}}"> Home </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+            <li> <a href="{{url_for('landing_page')}}"> Contacts </a> </li>
+
+            <div class="dropdown">
+                <button class="dropdown_button"> Accounts </button>
+                <div class="dropdown_content">
+                    <div class="profile_section">
+                        <div class="profile_section_body">
+                            <div class="staff_profile_photo">
+                                {% if admin['profile_admin'] %}
+                                <img class="staff_profile_photo" src="{{ url_for('static', filename=admin['profile_admin']) }}" width="150">
+                                {% else %}
+                                <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                                {% endif %}
+                            </div>
+                            <h1 class="profile_name">{{ admin['name_admin'] }}</h1>
+                            <p class="profile_email">{{ admin['email_admin'] }}</p>
+                        </div>
+                    </div>
+                    <a class="profile_button" href="{{url_for('admin_profile')}}"> Profile </a>
+
+                    <p class="dropdown_divider">  </p>
+
+                        <p class="dashboard_title"> Admin Dashboard </p>
+                        <div class="dashboard_button">
+                            <a href="{{url_for('admin_dashboard_books')}}"> Book List </a>
+                        </div>
+                        <div class="dashboard_button">
+                            <a href="{{url_for('admin_dashboard_staff')}}"> Staff List </a>
+                        </div>
+                    <div class="logout_button">
+                        <a href="{{url_for('admin_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="book_details">
+        <div class="book_details_body">
+            <div class="book_details_elements">
+                <form action="{{ url_for('admin_dashboard_books') }}" method="POST" enctype="multipart/form-data">
+                    <div class="element_left">
+                        <label class="book_cover_wrapper" for="cover_book">
+                            <img id="preview" src="{{ url_for('static', filename='profile_p/cover_default.jpg') }}" class="book_cover_large" alt="Book Cover">
+                            <div class="hover_text">Click to upload cover</div>
+                            <input type="file" id="cover_book" name="cover_book" accept="image/*">
+                        </label>
+                    </div>
+    
+                    <div class="element_right">
+                        <input type="text" name="title_book" class="book_title" placeholder="Title of the book" required>
+    
+                        <div class="author_year">
+                            <input type="text" name="author_book" class="author_year0" placeholder="Author" required>
+                            <input type="number" name="year_book" class="author_year0" placeholder="Year Published" required>
+                            <select name="course_book" class="course_drop" required>
+                                <option value="">Select Course</option>
+                                <option value="BSIT">BSIT</option>
+                                <option value="BSN">BSN</option>
+                                <option value="BSBA">BSBA</option>
+                                <option value="BSCRIM">BSCRIM</option>
+                                <option value="BSHM">BSHM</option>
+                                <option value="BSAIS">BSAIS</option>
+                                <option value="BSCE">BSCE</option>
+                                <option value="BSED">BSED</option>
+                            </select>
+                        </div>
+    
+                        <div class="book_description">
+                            <div class="book_desc">
+                                <p class="desc_title"> Description: </p>
+                                <textarea class="desc_input" name="desc_book" rows="4" cols="70" placeholder="Write a short description..." required></textarea>
+                            </div>
+
+                            <div class="book_quantity">
+                                <div class="quantity_box">
+                                    <label for="quantity_book">Quantity:</label>
+                                    <input type="number" id="quantity_book" name="quantity_book" min="1" required>
+                                </div>
+                                <button type="submit" class="save_btn">Add Book</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="footer_body">
+            <div class="footer_elements">
+
+                <div class="footer_buttons">
+                    <ul class="footer_links" type="none">
+                        <li> 
+                            <p> Explore </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="{{url_for('admin_home_page')}}"> Home </a> </li>
+                                <li> <a href="#"> About </a> </li>
+                                <li> <a href="{{url_for('booklist_admin')}}"> Book List </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Help </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> FAQ </a> </li>
+                                <li> <a href="#"> Contacts </a> </li>
+                            </ul>
+                        </li>
+                        <li> 
+                            <p> Legal </p>
+                            <ul class="footer_text" type="none">
+                                <li> <a href="#"> Terms of Use </a> </li>
+                                <li> <a href="#"> Terms of Service </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="footer_bottom">
+                        <div class="footer_attention">
+                            <p> Discover a smarter, simpler way to explore and manage books. </p>
+                        </div>
+
+                        <div class="footer_copyright">
+                            <p> ©︎ Readgister. 2025 </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer_logo">
+                    <img src= " {{ url_for ('static', filename='photos/logo/logo_white.png') }}" alt="Readgister." class="footer_img">
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("cover_book").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const preview = document.getElementById("preview");
+                preview.src = URL.createObjectURL(file);
+            }
+        });
+    </script>
+
+</body>
+</html>

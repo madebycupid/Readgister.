@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet", href="{{url_for('static', filename='style_admin_dashboard.css')}}">
+
+
+  <meta charset="UTF-8">
+  <title>Readgister - Admin Dashboard</title>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <ul class="button" type="none">
+        <li> <img src="{{url_for('static', filename='photos/logo/logo_icon_white.png')}}" class="small_logo"> </li>
+        <li> <a href="{{url_for('staff_home_page')}}"> Home </a> </li>
+        <li> <a href="{{url_for('landing_page')}}"> About </a> </li>
+        <li> <a href="{{url_for('landing_page')}}"> FAQ </a> </li>
+
+        <div class="dropdown">
+            <button class="dropdown_button"> Accounts </button>
+            <div class="dropdown_content">
+                <div class="profile_section">
+                    <div class="profile_section_body">
+                        <div class="staff_profile_photo">
+                            {% if admin['profile_admin'] %}
+                            <img class="staff_profile_photo" src="{{ url_for('static', filename=admin['profile_admin']) }}" width="150">
+                            {% else %}
+                            <img class="staff_profile_photo0" src="{{ url_for('static', filename='profile_p/profile_default.jpg') }}" width="150">
+                            {% endif %}
+                        </div>
+                        <h1 class="profile_name">{{ admin['name_admin'] }}</h1>
+                        <p class="profile_email">{{ admin['email_admin'] }}</p>
+                    </div>
+                </div>
+                <a class="profile_button" href="{{url_for('staff_profile')}}"> Profile </a>
+
+                <p class="dropdown_divider">  </p>
+
+                    <p class="dashboard_title"> Admin Dashboard </p>
+                    <div class="dashboard_button">
+                        <a href="{{url_for('admin_dashboard')}}"> Book List </a>
+                    </div>
+                    <div class="dashboard_button">
+                        <a href="{{url_for('admin_dashboard')}}"> Staff List </a>
+                    </div>
+                <div class="logout_button">
+                    <a href="{{url_for('admin_logout')}}" onclick="return confirm('Are you sure you want to logout?');"> Logout </a>
+                </div>
+            </div>
+        </div>
+    </ul>
+</div>
+
+  <div class="title_header_body">
+    <div class="title_header">
+      <div class="title_header_left">
+        <div class="title_text">
+          <h1> Admin Dashboard </h1>
+          <p> 今度は、あなた、あなた、あなた。まるで磁気みたいに 今度は、あなた、あなた、あなた。まるで磁気みたいに </p>
+        </div>
+
+      </div>
+
+      <div class="title_header_right">
+        <div class="title_header_buttons">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+</body>
+</html>
