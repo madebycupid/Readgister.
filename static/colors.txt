@@ -1,0 +1,12 @@
+color scheme -- Apple Fruit
+#671710
+#989b29
+#dbbb7a
+#fef7ef
+#3c4765
+
+== border ==
+#e5d7c7
+
+== shadow ==
+#f0ebe5

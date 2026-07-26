@@ -1,0 +1,220 @@
+@font-face {
+	font-family: 'Poppins';
+	src: url(fonts/Poppins-Regular.ttf);
+}
+@font-face {
+	font-family: 'Poppins-Bold';
+	src: url(fonts/Poppins-Bold.ttf);
+}
+@font-face {
+	font-family: 'Poppins-Medium';
+	src: url(fonts/Poppins-Medium.ttf);
+}
+@font-face {
+	font-family: 'ITC-Garamond-Std-Light-Narrow';
+	src: url(fonts/ITC-Garamond-Std-Light-Narrow.otf);
+}
+@font-face {
+	font-family: 'ITC-Garamond-Std-Light-Narrow-Italic';
+	src: url(fonts/ITC-Garamond-Std-Light-Narrow-Italic.otf);
+}
+@font-face {
+	font-family: 'ITC-Garamond-Std-Book-Narrow';
+	src: url(fonts/ITC-Garamond-Std-Book-Narrow.otf);
+}
+@font-face {
+	font-family: 'ITC-Garamond-Std-Book-Narrow-Italic';
+	src: url(fonts/ITC-Garamond-Std-Book-Narrow-Italic.otf);
+}
+body {
+	background-color: #fef7ef;
+	width: 100%;
+	height: auto;
+	margin: 0%;
+}
+.navbar {
+    display: flex;
+	position: sticky;
+    background-color: #671710 ;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: -3rem;
+}
+.navbar .small_logo {
+    margin-left: -1rem;
+    width: 50px;
+    height: auto;
+    scale: 1.1;
+}
+.navbar .button li {
+    margin-right: 3rem;
+    display: flex;
+    align-items: center;
+}
+.navbar .button {
+    display: flex;
+    align-items: center;
+}
+.navbar .button li a {
+    font-family: Poppins, sans-serif;
+    color: white;
+	text-decoration: none;
+}
+.navbar .dropdown {
+    position: absolute;
+    right: 0;
+    align-items: center;
+	margin-right: 2rem;
+}
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+.navbar .dropdown .dropdown_button {
+    background-color: #989b29;
+    font-family: Poppins, sans-serif;
+    border-radius: 20px;
+    min-width: 200px;
+    min-height: 30px;
+    margin-top: -10px;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+.navbar .dropdown .dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #fef7ef;
+    border-radius: 20px;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown_content a {
+    font-family: Poppins, sans-serif;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown_content {
+    display: block;
+}
+.dropdown:hover .dropdown_button {
+    background-color: #dbbb7a;
+}
+.dropdown_divider {
+    border-bottom: 4px dashed #e5d7c7;
+}
+.dashboard_button:hover, .profile_button:hover {
+    background-color: #e5d7c7;
+}
+.dashboard_title {
+    font-family: Poppins-Medium, sans-serif;
+    font-size: 15px;
+    color: #dbcab7;
+    text-align: center;
+    width: 155px;
+    background-color: #fef7ef;
+    margin-top: -1.7rem;
+    margin-left: 1.4rem;
+}
+.profile_button {
+    margin-bottom: -0.5rem;
+}
+.logout_button a {
+    color: white;
+}
+.logout_button {
+    color: #fef7ef;
+    background-color: #671710;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.logout_button:hover {
+    background-color: #dbbb7a;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.profile_section {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.staff_profile_photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+}
+.staff_profile_photo0 {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    margin-left: 0.7rem;
+}
+.profile_section_body .profile_name {
+    font-family: Poppins-Medium, sans-serif;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+.profile_section_body .profile_email {
+    font-family: Poppins-Medium, sans-serif;
+    color: rgba(0, 0, 0, 0.485);
+    font-size: 12px;
+    text-align: center;
+    margin-top: -1rem;
+}
+.title_header_body {
+    display: flex;
+    justify-content: center;
+}
+.title_header {
+    background-color: #989b29;
+    border: 5px solid #989b29;
+    border-radius: 20px;
+    width: 92%;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 45px;
+}
+.title_header_left {
+
+}
+.title_header_left .title_text h1 {
+    font-family: ITC-Garamond-Std-Book-Narrow, serif;
+    color: #fef7ef;
+    font-size: 60px;
+    margin-top: -1rem;
+    text-align: left;
+}
+.title_header_left .title_text p {
+    font-family: Poppins-Medium, sans-serif;
+    color: #fef7ef;
+    font-size: 15px;
+    margin-top: -3rem;
+    text-align: left;
+}
+.title_header_right {
+
+}
+.title_header_right .title_header_buttons button {
+    font-family: Poppins-Medium, sans-serif;
+    background-color: #989b29;
+    border: 5px solid #fef7ef;
+    box-shadow: 7px 7px #fef7ef;
+    border-radius: 100px;
+    color: #fef7ef;
+    padding: 15px;
+    width: 15%;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    margin-bottom: -1rem;
+    transition: .3s;
+}
+.title_header_right .title_header_buttons button:hover {
+    border: 5px solid #dbbb7a;
+    box-shadow: 7px 7px #dbbb7a;
+    color: #dbbb7a;
+}
