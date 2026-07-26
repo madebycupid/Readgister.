@@ -1,0 +1,12 @@
+An archive of a school library system called Readgister (2025).
+
+Readgister is a project developed by a group of second-year college students, primarily led by me, Charlie. This project serves as our final assignment for the Bachelor of Science in Information Technology program.
+
+Readgister makes book tracking simple and smart! It helps students and librarians keep track of borrowed books quickly and efficiently.
+
+Thank you for my members 2025:
+1. Charlie Balsomo Jr.
+2. Ann Margret Nequia 
+3. Carl Klient Capanas 
+4. Andren Sangyon
+5. KC Fuerte
